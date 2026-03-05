@@ -66,5 +66,44 @@ void IDet::Clear()
   	TSd2Theta.clear();
   	TSd1Phi.clear();
   	TSd2Phi.clear();
+
+	TYuMul=0;  
+	TYuADC.clear();
+	TYuEnergy.clear();
+  	TYuTheta.clear();// Yd theta angle                                                                       
+	TYuChannel.clear();
+	TYuNo.clear();
+	TYuRing.clear();
+	TYuNeighbour.clear();
+	
+	TSurMul=0;
+	TSusMul=0;
+	TSurEnergy.clear();
+	TSurChannel.clear();
+	TSurNeighbour.clear();
+  	TSurADC.clear();
+	TSusEnergy.clear();
+	TSusChannel.clear();
+	TSusNeighbour.clear();
+  	TSusADC.clear();
+  	TSuTheta.clear();
+  	TSuPhi.clear();
+		
+	TZdxMul=0;
+	TZdxEnergy.clear();
+	TZdxChannel.clear();
+	TZdxPos.clear();
+  	TZdxADC.clear();
+
+	TZdyMul=0;
+	TZdyEnergy.clear();
+	TZdyChannel.clear();
+	TZdyPos.clear();
+  	TZdyADC.clear();
+
+	TZdMul=0;
+	TZdR.clear();
+	TZdTheta.clear();
+	TZdPhi.clear();
 }
 
