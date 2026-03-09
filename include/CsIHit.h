@@ -33,7 +33,7 @@ class CsIHit : public TObject{
   		Bool_t Hit(Double_t, Double_t, Double_t, TVector3, Double_t);  //!
 		Double_t ELoss(nucleus, Double_t, Double_t, Double_t);
 		void SortByEnergy();
-  		void Clear();  //!
+  		void Clear(Option_t *option = "") override;  //!
 	protected:
 
  	private:

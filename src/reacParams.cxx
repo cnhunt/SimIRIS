@@ -128,7 +128,7 @@ void reacParams::Load(std::string filename){
 	file=NULL;
 }
 
-void reacParams::Print(){
+void reacParams::Print(Option_t *option) const{
 	printf("\n************************************************\n");
 	switch(N){
 		case 2:
@@ -155,7 +155,7 @@ void reacParams::Print(){
 	printf("\n************************************************\n\n");
 }
 
-void reacParams::Clear(){
+void reacParams::Clear(Option_t *option){
 
 	A.clear(); 
 	a.clear();

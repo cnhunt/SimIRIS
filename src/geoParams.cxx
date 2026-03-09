@@ -176,7 +176,7 @@ void geoParams::Load(std::string filename){
 	file=NULL;
 }
 
-void geoParams::Print(){
+void geoParams::Print(Option_t *option) const{
 
 	printf("********************************\n\n");
 	printf("IC:\t Pressure: %.2lf Torr\n",ICPressure);
@@ -198,7 +198,7 @@ void geoParams::Print(){
 	printf("********************************\n\n");
 }
 
-void geoParams::Clear(){
+void geoParams::Clear(Option_t *option){
 
 	DYY=0.; 
 	DS3=0.; 

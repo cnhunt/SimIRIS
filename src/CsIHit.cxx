@@ -32,7 +32,7 @@ CsIHit::CsIHit(Double_t th)
 	dE_ideal.assign(2,NAN);
 }
 
-void CsIHit::Clear()
+void CsIHit::Clear(Option_t *option)
 {
 	mul = 0;
 	fX.assign(2,NAN);

@@ -59,7 +59,7 @@ void YYHit::Init(Double_t th[8])
 	dE_ideal.assign(2,NAN);
 }
 
-void YYHit::Clear()
+void YYHit::Clear(Option_t *option)
 {
 	mul = 0;
 	fX.assign(2,NAN);

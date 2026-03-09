@@ -23,7 +23,7 @@ class PTrack : public TObject{
   		PTrack();//! Create
   		virtual ~PTrack() {} //!
 
-  		void Clear();  //!
+  		void Clear(Option_t *option = "") override;  //!
 	protected:
 
  	private:

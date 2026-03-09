@@ -19,7 +19,7 @@ nucleus::nucleus()
 	S2n=0.; 
 	EL.Clear();
 }
-void nucleus::Clear()
+void nucleus::Clear(Option_t *option)
 {
 	name.clear(); 
 	N=-1;
@@ -257,7 +257,7 @@ void nucleus::getInfo(std::string binpath, std::string input)
 	return;
 }
 
-void nucleus::Print()
+void nucleus::Print(Option_t *option) const
 {	
 	printf("====\t%s\t====\n",name.data());
 	printf("N=%d\tZ=%d\tA=%d\tmass=%lf\n",N,Z,A,mass);

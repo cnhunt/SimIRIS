@@ -36,8 +36,8 @@ class geoParams : public TObject {
 		//virtual void ReadCalibPar(char* line);
 		virtual void ReadParams(char* line);
 		virtual void Load(std::string filename);
-		virtual void Print();
-		virtual void Clear();
+		virtual void Print(Option_t *option = "") const override;
+		virtual void Clear(Option_t *option = "") override;
 //		ClassDef(geoParams,1)
 };
 

@@ -40,7 +40,7 @@ class dedx : public TObject{
 		void loadIncomingELoss(std::string, std::string, std::string, std::string, Double_t);
 		void loadOutgoingELoss(std::string, std::string, std::string, std::string, Double_t);
 		void loadELoss(std::string, Double_t[100], Double_t[100], Double_t);
-  		void Clear();  //!
+  		void Clear(Option_t *option = "") override;  //!
 	protected:
 
  	private:

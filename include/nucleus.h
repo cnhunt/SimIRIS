@@ -27,8 +27,8 @@ class nucleus : public TObject {
 		void getInfo(std::string, Int_t, Int_t);
 		void ReadFile(std::string, Int_t, std::string);
 		//virtual void SetFilenames(std::string);
-		void Print();
-		void Clear();
+		void Print(Option_t *option = "") const override;
+		void Clear(Option_t *option = "") override;
 		ClassDef(nucleus,1)
 };
 

@@ -43,7 +43,7 @@ void S3Hit::Init(Bool_t o, Double_t th)
 	dE_ideal.assign(2,NAN);
 }
 
-void S3Hit::Clear()
+void S3Hit::Clear(Option_t *option)
 {
 	mul = 0;
 	fX.assign(2,NAN);

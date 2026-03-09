@@ -5,7 +5,7 @@ dedx::dedx()
 	Clear();	
 }
 
-void dedx::Clear()
+void dedx::Clear(Option_t *option)
 {
 	for(int i=0; i<100; i++)
 	{

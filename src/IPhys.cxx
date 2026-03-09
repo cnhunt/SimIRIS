@@ -9,7 +9,7 @@ IPhys::IPhys() {
 
 IPhys::~IPhys() {}   // <-- must define destructor
 
-void IPhys::Clear() {
+void IPhys::Clear(Option_t *option) {
     
     Q_ydcsi.assign(2, NAN);
     YdCsIETot.assign(2, NAN);

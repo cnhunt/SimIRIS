@@ -17,7 +17,7 @@ PTrack::PTrack()
 	Ebt = 0.;
 }
 
-void PTrack::Clear()
+void PTrack::Clear(Option_t *option)
 {
 	E = 0.;
 	Ecm = 0.;
