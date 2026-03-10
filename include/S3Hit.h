@@ -41,7 +41,7 @@ class S3Hit : public TObject{
 
  	private:
   
-	ClassDef(S3Hit,1);
+	ClassDefOverride(S3Hit,1);
 };
 
 #endif

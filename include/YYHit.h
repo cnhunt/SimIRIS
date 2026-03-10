@@ -41,7 +41,7 @@ class YYHit : public TObject{
 
  	private:
   
-	ClassDef(YYHit,1);
+	ClassDefOverride(YYHit,1);
 };
 
 #endif

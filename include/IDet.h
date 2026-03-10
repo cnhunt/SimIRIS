@@ -122,7 +122,7 @@ class IDet : public TObject {
 
 	
 	void Clear(Option_t *option = "") override;
-	ClassDef(IDet,1)
+	ClassDefOverride(IDet,1)
 };
 
 #endif

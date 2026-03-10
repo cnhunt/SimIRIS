@@ -43,7 +43,7 @@ public:
     Double_t Qgen;    
 
 private:
-    ClassDef(IPhys, 1)
+    ClassDefOverride(IPhys, 1)
 };
 
 #endif

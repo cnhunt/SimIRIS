@@ -28,7 +28,7 @@ class PTrack : public TObject{
 
  	private:
   
-	ClassDef(PTrack,1);
+	ClassDefOverride(PTrack,1);
 };
 
 #endif

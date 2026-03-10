@@ -38,7 +38,7 @@ class CsIHit : public TObject{
 
  	private:
   
-	ClassDef(CsIHit,1);
+	ClassDefOverride(CsIHit,1);
 };
 
 #endif

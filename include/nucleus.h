@@ -29,7 +29,7 @@ class nucleus : public TObject {
 		//virtual void SetFilenames(std::string);
 		void Print(Option_t *option = "") const override;
 		void Clear(Option_t *option = "") override;
-		ClassDef(nucleus,1)
+		ClassDefOverride(nucleus,1)
 };
 
 #endif
