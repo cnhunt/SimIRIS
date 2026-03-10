@@ -4,8 +4,6 @@
 #include <algorithm>
 #include "nucleus.h"
 
-ClassImp(nucleus);
-
 nucleus::nucleus()
 {
 	name.clear(); 
@@ -19,7 +17,7 @@ nucleus::nucleus()
 	S2n=0.; 
 	EL.Clear();
 }
-void nucleus::Clear(Option_t *option)
+void nucleus::Clear()
 {
 	name.clear(); 
 	N=-1;
@@ -33,7 +31,7 @@ void nucleus::Clear(Option_t *option)
 	EL.Clear();
 }
 
-void nucleus::ReadFile(std::string binpath, Int_t inputA, std::string inpEl)
+void nucleus::ReadFile(std::string binpath, int inputA, std::string inpEl)
 {
 	std::string massfilename, rctfilename1, rctfilename2;
 	if(binpath.length()<8)
@@ -49,14 +47,14 @@ void nucleus::ReadFile(std::string binpath, Int_t inputA, std::string inpEl)
 		rctfilename2 = binpath + "ame/rct2.mas12";
 	}
 
-	const Double_t Amu=931.494061;
+	const double Amu=931.494061;
 	char buffer[124] = "";
 	std::string cN,cZ,cA,cEl,cME,cAM;
 	
-	Double_t ME=0.;
-	Double_t AM=0.;
-	Double_t mass1=0.;
-	//Double_t mass2=0.;
+	double ME=0.;
+	double AM=0.;
+	double mass1=0.;
+	//double mass2=0.;
 	
 	FILE *massfile;
 	massfile=fopen(massfilename.data(),"r");
@@ -106,7 +104,7 @@ void nucleus::ReadFile(std::string binpath, Int_t inputA, std::string inpEl)
 	}
 
 	std::string cA1,cEl1,cS2n,cS2p;
-	Int_t A1=-1;
+	int A1=-1;
 
 	while(!feof(rctfile1)){
 		if(!fgets(buffer,124,rctfile1)) break;
@@ -142,7 +140,7 @@ void nucleus::ReadFile(std::string binpath, Int_t inputA, std::string inpEl)
 	}
 
 	std::string cA2,cEl2,cSn,cSp;
-	Int_t A2=-1;
+	int A2=-1;
 
 	while(!feof(rctfile2)){
 		if(!fgets(buffer,124,rctfile2)) break;
@@ -172,7 +170,7 @@ void nucleus::ReadFile(std::string binpath, Int_t inputA, std::string inpEl)
 	return;
 }
 
-void nucleus::getInfo(std::string binpath, Int_t inputN, Int_t inputZ)
+void nucleus::getInfo(std::string binpath, int inputN, int inputZ)
 {
 	std::string massfilename;
 	if(binpath.length()<8)
@@ -186,8 +184,8 @@ void nucleus::getInfo(std::string binpath, Int_t inputN, Int_t inputZ)
 	}
 
 
-	Int_t inputA = inputN+inputZ;
-	Int_t N0, Z0;
+	int inputA = inputN+inputZ;
+	int N0, Z0;
 	char buffer[124];
 	std::string cN,cZ,cEl;
 
@@ -228,8 +226,8 @@ void nucleus::getInfo(std::string binpath, Int_t inputN, Int_t inputZ)
 void nucleus::getInfo(std::string binpath, std::string input)
 {
 	char inputEl[3] = "";
-	Int_t inputA = 0;
-	Bool_t is2n = kFALSE;
+	int inputA = 0;
+	bool is2n = false;
 
 	if(input=="p") input="1H";
 	else if(input=="d") input="2H";
@@ -237,7 +235,7 @@ void nucleus::getInfo(std::string binpath, std::string input)
 	else if(input=="n") input="1n";
 	else if(input=="2n"){ 
 		input="1n";
-		is2n=kTRUE;
+		is2n=true;
 	}
 
 	sscanf(input.data(),"%d%s",&inputA,inputEl);
@@ -257,7 +255,7 @@ void nucleus::getInfo(std::string binpath, std::string input)
 	return;
 }
 
-void nucleus::Print(Option_t *option) const
+void nucleus::Print() const
 {	
 	printf("====\t%s\t====\n",name.data());
 	printf("N=%d\tZ=%d\tA=%d\tmass=%lf\n",N,Z,A,mass);

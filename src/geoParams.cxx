@@ -1,9 +1,9 @@
 #include "geoParams.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <cstring>
 
 geoParams::geoParams(){
-  //geoParams::Class()->IgnoreTObjectStreamer;
   geoParams::Clear();
 }
 
@@ -176,7 +176,7 @@ void geoParams::Load(std::string filename){
 	file=NULL;
 }
 
-void geoParams::Print(Option_t *option) const{
+void geoParams::Print() const{
 
 	printf("********************************\n\n");
 	printf("IC:\t Pressure: %.2lf Torr\n",ICPressure);
@@ -198,7 +198,7 @@ void geoParams::Print(Option_t *option) const{
 	printf("********************************\n\n");
 }
 
-void geoParams::Clear(Option_t *option){
+void geoParams::Clear(){
 
 	DYY=0.; 
 	DS3=0.; 
@@ -211,9 +211,9 @@ void geoParams::Clear(Option_t *option){
 	TTgt=0.; 
 	AoZTgt=0.; 
 	ICPressure=0.; 
-	Mask=kTRUE; 
-	Shield=kTRUE; 
-	for(Int_t i=0; i<8; i++) { TYY[i] = 0.; }
-	for(Int_t i=0; i<8; i++) { TYYU[i] = 0.; }
-	for(Int_t i=0; i<2; i++) { TS3[i] = 0.; }
+	Mask=true; 
+	Shield=true; 
+	for(int i=0; i<8; i++) { TYY[i] = 0.; }
+	for(int i=0; i<8; i++) { TYYU[i] = 0.; }
+	for(int i=0; i<2; i++) { TS3[i] = 0.; }
 }
