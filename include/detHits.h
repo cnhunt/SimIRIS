@@ -114,7 +114,7 @@ void setIDet(Double_t ICdE, Double_t SSBdE, Bool_t sortEnergies)
 	det.TCsI1Channel.resize(yd.dE.size(),-1);
 	det.TCsI1Phi.resize(yd.dE.size(),NAN);
 	det.TCsI2Energy.resize(yd.dE.size(),NAN);
-	det.TCsI2Channel.resize(yd.dE.size(),NAN);
+	det.TCsI2Channel.resize(yd.dE.size(),-1);
 	det.TCsI2Phi.resize(yd.dE.size(),NAN);
 	if(csi.mul>0 && det.TYdMul>0)
 	{

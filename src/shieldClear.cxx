@@ -15,7 +15,7 @@
 Bool_t shieldClear(Double_t theta, Double_t phi)
 {
   const Double_t horSide = 2*67.4;	//horizontal side
-  const Double_t verSide = 2*50.0;	//vertical side
+  //const Double_t verSide = 2*50.0;	//vertical side
   const double verSideUp = 50.;
   const double verSideDown = 111.7;
   const Double_t cylRad = 129.0/2;	//cylinder radius
@@ -24,7 +24,7 @@ Bool_t shieldClear(Double_t theta, Double_t phi)
   Bool_t clear = 0;	// does the particle clear the shield?
   Bool_t clearRect = 0;	// does the particle clear the rectangular shield (without the curves)?
   Bool_t clearCirc = 0;	// does the particle clear curve circle of the shield?
-  Bool_t clearSquare = 0;	// does the particle clear square at the edge of the shield, with the opposite edge at the centre of the curve circle?
+  //Bool_t clearSquare = 0;	// does the particle clear square at the edge of the shield, with the opposite edge at the centre of the curve circle?
   Double_t cyCurve = 20;	//mm  
 
   Double_t polRad = cylRad/(sqrt(sin(theta)*cos(phi)*sin(theta)*cos(phi)+cos(theta)*cos(theta))); //polar radius, i.e. distance from the reaction point

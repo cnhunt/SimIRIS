@@ -56,7 +56,7 @@ void nucleus::ReadFile(std::string binpath, Int_t inputA, std::string inpEl)
 	Double_t ME=0.;
 	Double_t AM=0.;
 	Double_t mass1=0.;
-	Double_t mass2=0.;
+	//Double_t mass2=0.;
 	
 	FILE *massfile;
 	massfile=fopen(massfilename.data(),"r");
@@ -87,7 +87,7 @@ void nucleus::ReadFile(std::string binpath, Int_t inputA, std::string inpEl)
 		sscanf(cME.data(),"%lf",&ME);
 		sscanf(cAM.data(),"%lf",&AM);
 		mass1=Amu*A+ME/1000.;
-		mass2=Amu*AM/1000000.;
+		//mass2=Amu*AM/1000000.;
 		if(A==inputA&&cEl==inpEl) {
 			mass=mass1;
 			name=cA+cEl;

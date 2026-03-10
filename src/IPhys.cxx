@@ -23,12 +23,12 @@ void IPhys::Clear(Option_t *option) {
 
     Qyu=sqrt(-1.);
     YuTot=sqrt(-1.);
-    EB_yu;
+    //EB_yu;
     PB_yu=sqrt(-1.);
 
     Qsu=sqrt(-1.);
     SuTot=sqrt(-1.);
-    EB_su;
+    //EB_su;
     PB_su=sqrt(-1.);
     
     beamE=0.;
