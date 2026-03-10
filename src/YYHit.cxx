@@ -26,8 +26,8 @@ YYHit::YYHit()
 	fPhiCalc.assign(2,NAN);
 	fPhiRand.assign(2,NAN);
 	//hit.clear();
-	Seg.assign(2,NAN);
-	Ring.assign(2,NAN);
+	Seg.assign(2,-1);
+	Ring.assign(2,-1);
 	dE.assign(2,NAN);
 	dE_ideal.assign(2,NAN);
 }
@@ -53,8 +53,8 @@ void YYHit::Init(Double_t th[8])
 	fPhiCalc.assign(2,NAN);
 	fPhiRand.assign(2,NAN);
 	//hit.clear();
-	Seg.assign(2,NAN);
-	Ring.assign(2,NAN);
+	Seg.assign(2,-1);
+	Ring.assign(2,-1);
 	dE.assign(2,NAN);
 	dE_ideal.assign(2,NAN);
 }
@@ -70,8 +70,8 @@ void YYHit::Clear(Option_t *option)
 	fPhiCalc.assign(2,NAN);
 	fPhiRand.assign(2,NAN);
 	//hit.clear();
-	Seg.assign(2,NAN);
-	Ring.assign(2,NAN);
+	Seg.assign(2,-1);
+	Ring.assign(2,-1);
 	dE.assign(2,NAN);
 	dE_ideal.assign(2,0);
 }

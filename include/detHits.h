@@ -111,7 +111,7 @@ void setIDet(Double_t ICdE, Double_t SSBdE, Bool_t sortEnergies)
 	}
 
 	det.TCsI1Energy.resize(yd.dE.size(),NAN);
-	det.TCsI1Channel.resize(yd.dE.size(),NAN);
+	det.TCsI1Channel.resize(yd.dE.size(),-1);
 	det.TCsI1Phi.resize(yd.dE.size(),NAN);
 	det.TCsI2Energy.resize(yd.dE.size(),NAN);
 	det.TCsI2Channel.resize(yd.dE.size(),NAN);
@@ -177,10 +177,10 @@ void setIDet(Double_t ICdE, Double_t SSBdE, Bool_t sortEnergies)
 	}
 
 	det.TSd2rEnergy.resize(sd1.dE.size(),NAN);
-	det.TSd2rChannel.resize(sd1.dE.size(),NAN);
+	det.TSd2rChannel.resize(sd1.dE.size(),-1);
 	det.TSd2Theta.resize(sd1.dE.size(),NAN);
 	det.TSd2sEnergy.resize(sd1.dE.size(),NAN);
-	det.TSd2sChannel.resize(sd1.dE.size(),NAN);
+	det.TSd2sChannel.resize(sd1.dE.size(),-1);
 	det.TSd2Phi.resize(sd1.dE.size(),NAN);
 	if(det.TSd1rMul>0 && sd2.mul>0)
 	{
