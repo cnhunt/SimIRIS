@@ -9,7 +9,7 @@ IPhys::IPhys() {
 
 IPhys::~IPhys() {}   // <-- must define destructor
 
-void IPhys::Clear() {
+void IPhys::Clear(Option_t *option) {
     
     Q_ydcsi.assign(2, NAN);
     YdCsIETot.assign(2, NAN);
@@ -23,12 +23,12 @@ void IPhys::Clear() {
 
     Qyu=sqrt(-1.);
     YuTot=sqrt(-1.);
-    EB_yu;
+    //EB_yu;
     PB_yu=sqrt(-1.);
 
     Qsu=sqrt(-1.);
     SuTot=sqrt(-1.);
-    EB_su;
+    //EB_su;
     PB_su=sqrt(-1.);
     
     beamE=0.;

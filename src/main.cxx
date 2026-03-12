@@ -10,12 +10,12 @@
 #include "TRandom3.h"
 #include "TGenPhaseSpace.h"
 #include "TStopwatch.h"
-#include "YYHit.cxx"
-#include "IPhys.cxx"
-#include "CsIHit.cxx"
-#include "IDet.cxx"
-#include "PTrack.cxx"
-#include "S3Hit.cxx"
+#include "YYHit.h"
+#include "IPhys.h"
+#include "CsIHit.h"
+#include "IDet.h"
+#include "PTrack.h"
+#include "S3Hit.h"
 #include "physHits.h"
 #include "header.h"
 #include "detHits.h"
@@ -87,7 +87,7 @@ void clearEvt()
 	LorVdbu.Clear();
 	LorVebu.Clear();
 	LorVfbu.Clear();
-	reacPos;
+	//reacPos;
 	PS0.Clear();
 	PS1.Clear();
 
@@ -396,12 +396,13 @@ int main(int argc, char *argv[])
 	sd2.Init(1,geoPrm.TS3[1]);
 	su.Init(0,geoPrm.TS3U);
 
-	Bool_t LEHit, HEHit;
+	//Bool_t LEHit;
+	Bool_t HEHit;
 
-	Int_t LEHitcntr=0;
+	//Int_t LEHitcntr=0;
 	Int_t HEHitcntr=0;
 
-	Double_t LEeff, HEeff;
+	//Double_t LEeff, HEeff;
 	Double_t E_after_IC=0.;
 	Double_t E_before_SSB=0.;
 	Double_t E_before_Tgt=0.;
@@ -720,7 +721,8 @@ int main(int argc, char *argv[])
 			HEHit = detHits(blP, B, reacPos,geoPrm.Mask,geoPrm.Shield,0);
 			QvalueCalculate(B, E_center_Tgt, mB, mA, ma, 0);
 			tlP = TgtELoss(tlP, b, geoPrm, reacZ, isSHTReac);// Calculate the energy loss of the particle in Foil and SHT
-			LEHit = detHits(tlP, b, reacPos,geoPrm.Mask,geoPrm.Shield, 1);
+			//LEHit = detHits(tlP, b, reacPos,geoPrm.Mask,geoPrm.Shield, 1);
+			detHits(tlP, b, reacPos,geoPrm.Mask,geoPrm.Shield, 1);
 			QvalueCalculate(b, E_center_Tgt, mb, mA, ma, 1);
 		}
 		else{ 
@@ -728,7 +730,8 @@ int main(int argc, char *argv[])
 			HEHit = detHits(blDecP, decB, reacPos,geoPrm.Mask,geoPrm.Shield,0);
 			QvalueCalculate(B, E_center_Tgt, mB, mA, ma, 0);
 			tlP = TgtELoss(tlP, b, geoPrm, reacZ, isSHTReac);// Calculate the energy loss of the particle in Foil and SHT
-			LEHit = detHits(tlP, b, reacPos,geoPrm.Mask,geoPrm.Shield,1);	
+			//LEHit = detHits(tlP, b, reacPos,geoPrm.Mask,geoPrm.Shield,1);	
+			detHits(tlP, b, reacPos,geoPrm.Mask,geoPrm.Shield,1);	
 			QvalueCalculate(b, E_center_Tgt, mb, mA, ma, 1);
 			if(decc.Z>0){
 				tlDecP1 = TgtELoss(tlDecP1, decc, geoPrm, reacZ, isSHTReac);// Calculate the energy loss of the particle in Foil and SHT

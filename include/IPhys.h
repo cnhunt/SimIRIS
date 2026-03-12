@@ -11,7 +11,7 @@ public:
     IPhys();
     virtual ~IPhys();   // <-- must declare this if you have virtual methods
 
-    void Clear(); //!
+    void Clear(Option_t *option = "") override; //!
 
     std::vector<Double_t> Q_ydcsi;
     std::vector<Double_t> YdCsIETot;
@@ -43,7 +43,7 @@ public:
     Double_t Qgen;    
 
 private:
-    ClassDef(IPhys, 1)
+    ClassDefOverride(IPhys, 1)
 };
 
 #endif

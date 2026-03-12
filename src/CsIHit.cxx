@@ -12,7 +12,7 @@ CsIHit::CsIHit()
 	fPhiCalc.assign(2,NAN);
 	fPhiRand.assign(2,NAN);
 	//hit.assign(2,NAN);
-	Seg.assign(2,NAN);
+	Seg.assign(2,-1);
 	dE.assign(2,NAN);
 	dE_ideal.assign(2,NAN);
 }
@@ -27,12 +27,12 @@ CsIHit::CsIHit(Double_t th)
 	fPhiCalc.assign(2,NAN);
 	fPhiRand.assign(2,NAN);
 	//hit.assign(2,NAN);
-	Seg.assign(2,NAN);
+	Seg.assign(2,-1);
 	dE.assign(2,NAN);
 	dE_ideal.assign(2,NAN);
 }
 
-void CsIHit::Clear()
+void CsIHit::Clear(Option_t *option)
 {
 	mul = 0;
 	fX.assign(2,NAN);
@@ -41,7 +41,7 @@ void CsIHit::Clear()
 	fPhiCalc.assign(2,NAN);
 	fPhiRand.assign(2,NAN);
 	//hit.assign(2,NAN);
-	Seg.assign(2,NAN);
+	Seg.assign(2,-1);
 	dE.assign(2,NAN);
 	dE_ideal.assign(2,NAN);
 }

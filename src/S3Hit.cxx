@@ -3,7 +3,7 @@
 #include "TRandom3.h"
 #include "TVector3.h"
 
-//ClassImp(S3Hit);
+ClassImp(S3Hit);
 
 S3Hit::S3Hit()
 {
@@ -18,8 +18,8 @@ S3Hit::S3Hit()
 	fThetaCalc.assign(2,NAN);
 	fThetaRand.assign(2,NAN);
 	//hit.clear;
-	Seg.assign(2,NAN);
-	Ring.assign(2,NAN);
+	Seg.assign(2,-1);
+	Ring.assign(2,-1);
 	dE.assign(2,NAN);
 	dE_ideal.assign(2,NAN);
 }
@@ -37,13 +37,13 @@ void S3Hit::Init(Bool_t o, Double_t th)
 	fThetaCalc.assign(2,NAN);
 	fThetaRand.assign(2,NAN);
 	//hit.clear;
-	Seg.assign(2,NAN);
-	Ring.assign(2,NAN);
+	Seg.assign(2,-1);
+	Ring.assign(2,-1);
 	dE.assign(2,NAN);
 	dE_ideal.assign(2,NAN);
 }
 
-void S3Hit::Clear()
+void S3Hit::Clear(Option_t *option)
 {
 	mul = 0;
 	fX.assign(2,NAN);
@@ -54,8 +54,8 @@ void S3Hit::Clear()
 	fThetaCalc.assign(2,NAN);
 	fThetaRand.assign(2,NAN);
 	//hit.clear;
-	Seg.assign(2,NAN);
-	Ring.assign(2,NAN);
+	Seg.assign(2,-1);
+	Ring.assign(2,-1);
 	dE.assign(2,NAN);
 	dE_ideal.assign(2,NAN);
 }

@@ -23,12 +23,12 @@ class PTrack : public TObject{
   		PTrack();//! Create
   		virtual ~PTrack() {} //!
 
-  		void Clear();  //!
+  		void Clear(Option_t *option = "") override;  //!
 	protected:
 
  	private:
   
-	ClassDef(PTrack,1);
+	ClassDefOverride(PTrack,1);
 };
 
 #endif

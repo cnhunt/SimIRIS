@@ -1,9 +1,9 @@
 #include "reacParams.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <cstring>
 
 reacParams::reacParams(){
-  //reacParams::Class()->IgnoreTObjectStreamer;
   reacParams::Clear();
 }
 
@@ -128,7 +128,7 @@ void reacParams::Load(std::string filename){
 	file=NULL;
 }
 
-void reacParams::Print(){
+void reacParams::Print() const{
 	printf("\n************************************************\n");
 	switch(N){
 		case 2:

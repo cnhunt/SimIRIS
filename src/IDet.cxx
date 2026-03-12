@@ -8,7 +8,7 @@ IDet::IDet(){
 	IDet::Clear();
 }
 
-void IDet::Clear()
+void IDet::Clear(Option_t *option)
 {
   	TYdMul=0;  
 	TYdADC.clear();
