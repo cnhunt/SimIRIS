@@ -400,7 +400,7 @@ int main(int argc, char *argv[])
 	Bool_t HEHit;
 
 	//Int_t LEHitcntr=0;
-	//Int_t HEHitcntr=0;
+	Int_t HEHitcntr=0;
 
 	//Double_t LEeff, HEeff;
 	Double_t E_after_IC=0.;
@@ -722,6 +722,7 @@ int main(int argc, char *argv[])
 			QvalueCalculate(B, E_center_Tgt, mB, mA, ma, 0);
 			tlP = TgtELoss(tlP, b, geoPrm, reacZ, isSHTReac);// Calculate the energy loss of the particle in Foil and SHT
 			//LEHit = detHits(tlP, b, reacPos,geoPrm.Mask,geoPrm.Shield, 1);
+			detHits(tlP, b, reacPos,geoPrm.Mask,geoPrm.Shield, 1);
 			QvalueCalculate(b, E_center_Tgt, mb, mA, ma, 1);
 		}
 		else{ 
@@ -730,6 +731,7 @@ int main(int argc, char *argv[])
 			QvalueCalculate(B, E_center_Tgt, mB, mA, ma, 0);
 			tlP = TgtELoss(tlP, b, geoPrm, reacZ, isSHTReac);// Calculate the energy loss of the particle in Foil and SHT
 			//LEHit = detHits(tlP, b, reacPos,geoPrm.Mask,geoPrm.Shield,1);	
+			detHits(tlP, b, reacPos,geoPrm.Mask,geoPrm.Shield,1);	
 			QvalueCalculate(b, E_center_Tgt, mb, mA, ma, 1);
 			if(decc.Z>0){
 				tlDecP1 = TgtELoss(tlDecP1, decc, geoPrm, reacZ, isSHTReac);// Calculate the energy loss of the particle in Foil and SHT
@@ -765,7 +767,7 @@ int main(int argc, char *argv[])
 		setIDet(ICdE,phys.SSBdE,sortEnergies);
 		
 		if(HEHit && sd1.dE.size()>0 && sd2.dE.size()>0.){
-			//if(sd1.dE[0]>0. && sd2.dE[0]>0.) HEHitcntr++;
+			if(sd1.dE[0]>0. && sd2.dE[0]>0.) HEHitcntr++;
 		}
 		tlP.Ecm = (LVb->E()-mb)*ma*1000./(mA+ma);
 		blP.Ecm = (LVB->E()-mB)*ma*1000./(mA+ma);
