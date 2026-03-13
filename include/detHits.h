@@ -194,9 +194,13 @@ void setIDet(Double_t ICdE, Double_t SSBdE, Bool_t sortEnergies)
 					det.TSd2Theta.at(l)=sd2.fThetaRand[i];
 					RingMatch=1;
 					}
-				if ((sd2.Seg[i]-det.TSd1sChannel.at(l))==-1 || (sd2.Seg[i]-det.TSd1sChannel.at(l))==0 || (sd2.Seg[i]-det.TSd1sChannel.at(l))==1 || (sd2.Seg[i]-det.TSd1sChannel.at(l))==31 || (sd2.Seg[i]-det.TSd1sChannel.at(l))==-31){
+					int sd2Seg = sd2.Seg[i];
+					if(sd2.Orientation != sd1.Orientation) {
+						sd2Seg = 31 - sd2Seg;
+					}
+				if ((sd2Seg-det.TSd1sChannel.at(l))==-1 || (sd2Seg-det.TSd1sChannel.at(l))==0 || (sd2Seg-det.TSd1sChannel.at(l))==1 || (sd2Seg-det.TSd1sChannel.at(l))==31 || (sd2Seg-det.TSd1sChannel.at(l))==-31){
 					det.TSd2sEnergy.at(l)=sd2.dE[i];
-					det.TSd2sChannel.at(l)=sd2.Seg[i];
+					det.TSd2sChannel.at(l)=sd2Seg;
 					det.TSd2Phi.at(l)=sd2.fPhiRand[i];
 					SectorMatch=1;
 				}	
