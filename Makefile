@@ -8,6 +8,10 @@ OBJECTDIR = $(BASEDIR)/obj
 BINARYDIR = $(BASEDIR)/bin
 HEADER = -I$(INCLUDEDIR) #-I$(TREEIRIS)/include
 
+CATIMAPATH ?= /home/iris/curtis/NewIris/catima/install
+CATIMALIBDIR = -L$(CATIMAPATH)/lib
+CATIMALIBS = -lcatima
+
 CXX = g++
 LD = g++
 ifdef ROOTSYS
@@ -16,6 +20,7 @@ CXXFLAGS += -g -O -Wall -Wuninitialized -I./ -I$(ROOTSYS)/include
 ROOTCFLAGS    = $(shell root-config --cflags)
 CXXFLAGS += $(HEADER)
 CXXFLAGS      += -g -ansi -fPIC $(ROOTCFLAGS)
+CXXFLAGS += -I$(CATIMAPATH)/include
 endif 
 
 
@@ -29,7 +34,7 @@ LDFLAGS = -O2
 all:  $(BINARYDIR)/simIris
 
 $(BINARYDIR)/simIris: $(OBJECTDIR)/simIris.o $(OBJECTDIR)/nucleus.o $(OBJECTDIR)/reacParams.o $(OBJECTDIR)/geoParams.o $(OBJECTDIR)/dedx.o $(OBJECTDIR)/dwba.o $(OBJECTDIR)/eloss.o $(OBJECTDIR)/shieldClear.o $(LIBDIR)/libSimEvent.so $(OBJECTDIR)/SimEventDict.o
-	$(CXX) -o $@ $(CXXFLAGS) $^ $(ROOTGLIBS) -lm -lz -lutil -lpthread -lrt
+	$(CXX) -o $@ $(CXXFLAGS) $^ $(CATIMALIBDIR) $(ROOTGLIBS) $(CATIMALIBS) -lm -lz -lutil -lpthread -lrt
 #remove -lnsl and -lrt for macOS
 $(LIBDIR)/libSimEvent.so: $(OBJECTDIR)/PTrack.o $(OBJECTDIR)/YYHit.o $(OBJECTDIR)/IPhys.o $(OBJECTDIR)/CsIHit.o $(OBJECTDIR)/S3Hit.o $(OBJECTDIR)/IDet.o $(OBJECTDIR)/SimEventDict.o
 	$(LD) $(SOFLAGS) $(LDFLAGS) $(ROOTGLIBS) $^ -o $@

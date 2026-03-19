@@ -1,4 +1,5 @@
 #include "eloss.h"
+#include "catima/catima.h"
 
 Double_t eval(Double_t in, Double_t x[100], Double_t y[100])
 {
@@ -31,6 +32,12 @@ Double_t eval(Double_t in, Double_t x[100], Double_t y[100])
 
 //Make it a method for a particle class.
 Double_t eloss(nucleus P, Double_t TZoverA, Double_t ein, Double_t th , Double_t x[100], Double_t y[100])//initial energy and thickness are given as arguments 
+{
+
+	return eloss_Lise(P, TZoverA, ein, th, x, y);
+}
+
+Double_t eloss_Lise(nucleus P, Double_t TZoverA, Double_t ein, Double_t th , Double_t x[100], Double_t y[100])//initial energy and thickness are given as arguments 
 {
 
 	Double_t k;
