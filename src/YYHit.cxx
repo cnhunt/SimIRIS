@@ -199,10 +199,14 @@ Double_t YYHit::ELoss(nucleus ncl, Double_t E, Double_t Theta, Double_t P)
 	Int_t sector;
 	if (P==-1) sector = Seg.size() - 1;
 	else sector = Seg[P];
-	E -= eloss(ncl,13./27.,E,0.1*2.702*0.1/cos(T),ncl.EL.eAl, ncl.EL.dedxAl);
-  	E -= eloss(ncl,5./10.,E,0.05*2.3502*0.1/cos(T),ncl.EL.eB, ncl.EL.dedxB);
-  	dE0 = eloss(ncl,14./28.,E,Thickness[sector]/cos(T),ncl.EL.eSi, ncl.EL.dedxSi);
-  	dE_ideal0 = eloss(ncl,14./28.,E,Avg_Thickness/cos(T),ncl.EL.eSi, ncl.EL.dedxSi);
+	E -= eloss(ncl,13./27.,E,0.1*2.702*0.1/cos(T), "Al");
+  	E -= eloss(ncl,5./10.,E,0.05*2.3502*0.1/cos(T), "B");
+  	dE0 = eloss(ncl,14./28.,E,Thickness[sector]/cos(T), "Si");
+  	dE_ideal0 = eloss(ncl,14./28.,E,Avg_Thickness/cos(T), "Si");
+	//E -= eloss(ncl,13./27.,E,0.1*2.702*0.1/cos(T),ncl.EL.eAl, ncl.EL.dedxAl);
+  	//E -= eloss(ncl,5./10.,E,0.05*2.3502*0.1/cos(T),ncl.EL.eB, ncl.EL.dedxB);
+  	//dE0 = eloss(ncl,14./28.,E,Thickness[sector]/cos(T),ncl.EL.eSi, ncl.EL.dedxSi);
+  	//dE_ideal0 = eloss(ncl,14./28.,E,Avg_Thickness/cos(T),ncl.EL.eSi, ncl.EL.dedxSi);
 	E = E-dE0;
 	if(dE0<0.) dE0 = -dE0;
   	if(dE0!=0.) dE0 = rndm->Gaus(dE0,0.0023*dE0*sqrt(5.5/dE0)); //0.3% of 5.5 - S1752

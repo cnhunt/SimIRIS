@@ -420,40 +420,40 @@ int main(int argc, char *argv[])
 
 	// Calculate energy loss up to center of the target
 	Double_t EA = reacPrm.E;	
-   	EA -= eloss(A,0.5,EA,ICWindow1,A.EL.eSi3N4, A.EL.dedxSi3N4);
-   	ICdE = eloss(A,0.586,EA,ICLength,A.EL.eC4H10, A.EL.dedxC4H10);
+   	EA -= eloss(A,0.5,EA,ICWindow1,"Si3N4");
+   	ICdE = eloss(A,0.586,EA,ICLength,"C4H10");
    	EA -= ICdE;
-   	EA -= eloss(A,0.5,EA,ICWindow2,A.EL.eSi3N4, A.EL.dedxSi3N4);
+   	EA -= eloss(A,0.5,EA,ICWindow2,"Si3N4");
 	E_after_IC = EA;
 	
 	if(isSHTReac){
 		if(geoPrm.Orientation==1){
 			E_before_Tgt = EA;
-   			EA -= eloss(A,1.,EA,geoPrm.TTgt/2.,A.EL.eTgt, A.EL.dedxTgt);
+   			EA -= eloss(A,1.,EA,geoPrm.TTgt/2.,"Target");
 			E_center_Tgt = EA;
-   			EA -= eloss(A,1.,EA,geoPrm.TTgt/2.,A.EL.eTgt, A.EL.dedxTgt);
+   			EA -= eloss(A,1.,EA,geoPrm.TTgt/2.,"Target");
 			E_after_Tgt = EA;
 		}
 		
 		E_before_Foil = EA;
-		E_center_Foil = EA - eloss(A,1./geoPrm.AoZFoil,EA,geoPrm.TFoil/2.,A.EL.eFoil, A.EL.dedxFoil);
-		EA -= eloss(A,1./geoPrm.AoZFoil,EA,geoPrm.TFoil,A.EL.eFoil, A.EL.dedxFoil);
+		E_center_Foil = EA - eloss(A,1./geoPrm.AoZFoil,EA,geoPrm.TFoil/2.,"Foil");
+		EA -= eloss(A,1./geoPrm.AoZFoil,EA,geoPrm.TFoil,"Foil");
    		//E_before_Tgt = EA;
    		E_after_Foil = EA;
 		if(geoPrm.Orientation==1) E_before_SSB = E_after_Foil;
 		
 		if(geoPrm.Orientation==0){
 			E_before_Tgt = E_after_Foil;
-   			E_center_Tgt = E_after_Foil - eloss(A,1.,E_after_Foil,geoPrm.TTgt/2.,A.EL.eTgt, A.EL.dedxTgt);
-   			E_after_Tgt = E_after_Foil-eloss(A,1.,E_after_Foil,geoPrm.TTgt,A.EL.eTgt, A.EL.dedxTgt);
+   			E_center_Tgt = E_after_Foil - eloss(A,1.,E_after_Foil,geoPrm.TTgt/2.,"Target");
+   			E_after_Tgt = E_after_Foil-eloss(A,1.,E_after_Foil,geoPrm.TTgt,"Target");
 			E_before_SSB = E_after_Tgt;
 		}
 	}
 	else{
 			E_before_Foil = E_after_IC;
-			EA -= eloss(A,1./geoPrm.AoZFoil,EA,geoPrm.TFoil/2.,A.EL.eFoil, A.EL.dedxFoil);
+			EA -= eloss(A,1./geoPrm.AoZFoil,EA,geoPrm.TFoil/2.,"Foil");
    			E_center_Foil = EA;
-			EA -= eloss(A,1./geoPrm.AoZFoil,EA,geoPrm.TFoil/2.,A.EL.eFoil, A.EL.dedxFoil);
+			EA -= eloss(A,1./geoPrm.AoZFoil,EA,geoPrm.TFoil/2.,"Foil");
    			E_after_Foil = EA;
 		
    		
@@ -541,14 +541,14 @@ int main(int argc, char *argv[])
 			//reacZ = geoPrm.TFoil/2.;
             
 			reacZ = rndm->Uniform(0,geoPrm.TTgt);
-            if(geoPrm.Orientation==0){EA = E_after_IC - eloss(A,1./geoPrm.AoZFoil,E_before_Foil,geoPrm.TFoil,A.EL.eFoil, A.EL.dedxFoil);}
+            if(geoPrm.Orientation==0){EA = E_after_IC - eloss(A,1./geoPrm.AoZFoil,E_before_Foil,geoPrm.TFoil,"Foil");}
 		 if(geoPrm.Orientation==1){EA=E_after_IC;}
-            EA = EA - eloss(A,b.Z/b.A,E_before_Tgt,reacZ,A.EL.eTgt, A.EL.dedxTgt);
+            EA = EA - eloss(A,b.Z/b.A,E_before_Tgt,reacZ,"Target");
 		}
 		else{
             
 			reacZ = rndm->Uniform(0,geoPrm.TFoil);
-            EA = E_after_IC - eloss(A,1./geoPrm.AoZFoil,E_before_Foil,reacZ,A.EL.eFoil, A.EL.dedxFoil);
+            EA = E_after_IC - eloss(A,1./geoPrm.AoZFoil,E_before_Foil,reacZ,"Foil");
 			//reacZ = geoPrm.TTgt/2.;
    			
  		}
@@ -759,7 +759,7 @@ int main(int argc, char *argv[])
 			detHits(buP4, f, reacPos,geoPrm.Mask,geoPrm.Shield,-1);
 		}
 		// Calculate energy loss in SSB
-		Double_t SSBE = eloss(A,14./28.,E_before_SSB,500.*2.3212*0.1,B.EL.eSi,B.EL.dedxSi);
+		Double_t SSBE = eloss(A,14./28.,E_before_SSB,500.*2.3212*0.1,"Si");
 		phys.SSBdE =rndm->Gaus(SSBE,0.05*SSBE);
 
 		

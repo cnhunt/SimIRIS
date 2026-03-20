@@ -165,7 +165,15 @@ Double_t S3Hit::ELoss(nucleus ncl, Double_t E, Double_t Theta, Double_t P)
 	TRandom3 *rndm = new TRandom3(0);
 	
 	if(Orientation==0){ // rings first
-		E -= eloss(ncl,13./27.,E,0.1*2.702*1.5/cos(T),ncl.EL.eAl,ncl.EL.dedxAl); //first metal
+		E -= eloss(ncl,13./27.,E,0.1*2.702*1.5/cos(T),"Al"); //first metal
+		E -= eloss(ncl,30./60.,E,0.1*2.65*3.5/cos(T),"SiO2"); //SiO2
+		E -= eloss(ncl,13./27.,E,0.1*2.702*0.3/cos(T),"Al"); //second metal
+		E -= eloss(ncl,5./10.,E,0.1*2.3502*0.5/cos(T),"B"); //boron junction implant 		
+		dE0 = eloss(ncl,14./28.,E,Thickness/cos(T),"Si");
+   		E -= dE0;
+		E -= eloss(ncl,15./31.,E,0.1*1.822*0.5/cos(T),"P"); //phosphorus implant
+		E -= eloss(ncl,13./27.,E,0.1*2.702*0.3/cos(T),"Al"); //metal
+		/*E -= eloss(ncl,13./27.,E,0.1*2.702*1.5/cos(T),ncl.EL.eAl,ncl.EL.dedxAl); //first metal
 		E -= eloss(ncl,30./60.,E,0.1*2.65*3.5/cos(T),ncl.EL.eSiO2,ncl.EL.dedxSiO2); //SiO2
 		E -= eloss(ncl,13./27.,E,0.1*2.702*0.3/cos(T),ncl.EL.eAl,ncl.EL.dedxAl); //second metal
 		E -= eloss(ncl,5./10.,E,0.1*2.3502*0.5/cos(T),ncl.EL.eB,ncl.EL.dedxB); //boron junction implant 		
@@ -173,6 +181,7 @@ Double_t S3Hit::ELoss(nucleus ncl, Double_t E, Double_t Theta, Double_t P)
    		E -= dE0;
 		E -= eloss(ncl,15./31.,E,0.1*1.822*0.5/cos(T),ncl.EL.eP,ncl.EL.dedxP); //phosphorus implant
 		E -= eloss(ncl,13./27.,E,0.1*2.702*0.3/cos(T),ncl.EL.eAl,ncl.EL.dedxAl); //metal
+		*/
 		// E -= dE0;
 		// if(dE0<0.) dE0 = -dE0;
 		// dE_ideal0 = dE0;
@@ -180,9 +189,13 @@ Double_t S3Hit::ELoss(nucleus ncl, Double_t E, Double_t Theta, Double_t P)
 		// if(dE0<0.) dE0 = -dE0;
 	}
 	else{ // sectors first
-		E -= eloss(ncl,13./27.,E,0.1*2.702*0.3/cos(T),ncl.EL.eAl,ncl.EL.dedxAl); //metal
+		E -= eloss(ncl,13./27.,E,0.1*2.702*0.3/cos(T),"Al"); //metal
+		E -= eloss(ncl,15./31.,E,0.1*1.822*0.5/cos(T),"P"); //phosphorus implant
+		dE0 = eloss(ncl,14./28.,E,Thickness/cos(T),"Si");	
+		/*E -= eloss(ncl,13./27.,E,0.1*2.702*0.3/cos(T),ncl.EL.eAl,ncl.EL.dedxAl); //metal
 		E -= eloss(ncl,15./31.,E,0.1*1.822*0.5/cos(T),ncl.EL.eP,ncl.EL.dedxP); //phosphorus implant
 		dE0 = eloss(ncl,14./28.,E,Thickness/cos(T),ncl.EL.eSi,ncl.EL.dedxSi);	
+		*/
    		E -= dE0;
 		// if(dE0<0.) dE0 = -dE0;
 		// dE_ideal0 = dE0;

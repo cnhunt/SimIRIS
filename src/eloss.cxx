@@ -1,6 +1,85 @@
 #include "eloss.h"
 #include "catima/catima.h"
 
+Double_t emptyArray[100] = {};
+
+StringCode hashString(const TString& str)
+{
+	if (str == "Foil") return StringCode::Foil;
+	if (str == "Al") return StringCode::Al;
+	if (str == "B") return StringCode::B;
+	if (str == "C4H10") return StringCode::C4H10;
+	if (str == "CsI") return StringCode::Foil;
+	if (str == "Target") return StringCode::Target;
+	if (str == "Mylar") return StringCode::Mylar;
+	if (str == "P") return StringCode::P;
+	if (str == "Si") return StringCode::Si;
+	if (str == "Si3N4") return StringCode::Si3N4;
+	if (str == "SiO2") return StringCode::SiO2;
+	return StringCode::unknown;
+}
+
+Double_t* getElossE(nucleus &P, TString material)
+{
+	switch(hashString(material)) {
+		case StringCode::Foil:
+			return P.EL.eFoil;
+		case StringCode::Al:
+			return P.EL.eAl;
+		case StringCode::B:
+			return P.EL.eB;
+		case StringCode::C4H10:
+			return P.EL.eC4H10;
+		case StringCode::CsI:
+			return P.EL.eCsI;
+		case StringCode::Target:
+			return P.EL.eTgt;
+		case StringCode::Mylar:
+			return P.EL.eMy;
+		case StringCode::P:
+			return P.EL.eP;
+		case StringCode::Si:
+			return P.EL.eSi;
+		case StringCode::Si3N4:
+			return P.EL.eSi3N4;
+		case StringCode::SiO2:
+			return P.EL.eSiO2;
+		default:
+			return emptyArray;
+	}
+}
+
+Double_t* getElossDeDx(nucleus &P, TString material)
+{
+	switch(hashString(material)) {
+		case StringCode::Foil:
+			return P.EL.dedxFoil;
+		case StringCode::Al:
+			return P.EL.dedxAl;
+		case StringCode::B:
+			return P.EL.dedxB;
+		case StringCode::C4H10:
+			return P.EL.dedxC4H10;
+		case StringCode::CsI:
+			return P.EL.dedxCsI;
+		case StringCode::Target:
+			return P.EL.dedxTgt;
+		case StringCode::Mylar:
+			return P.EL.dedxMy;
+		case StringCode::P:
+			return P.EL.dedxP;
+		case StringCode::Si:
+			return P.EL.dedxSi;
+		case StringCode::Si3N4:
+			return P.EL.dedxSi3N4;
+		case StringCode::SiO2:
+			return P.EL.dedxSiO2;
+		default:
+			return emptyArray;
+	}
+}
+
+
 Double_t eval(Double_t in, Double_t x[100], Double_t y[100])
 {
 	Double_t dxin=0., dx=0., dy=0., e=0.;
@@ -35,6 +114,12 @@ Double_t eloss(nucleus P, Double_t TZoverA, Double_t ein, Double_t th , Double_t
 {
 
 	return eloss_Lise(P, TZoverA, ein, th, x, y);
+}
+
+Double_t eloss(nucleus P, Double_t TZoverA, Double_t ein, Double_t th , TString material)//initial energy and thickness are given as arguments 
+{
+
+	return eloss_Lise(P, TZoverA, ein, th, getElossE(P, material), getElossDeDx(P, material));
 }
 
 Double_t eloss_Lise(nucleus P, Double_t TZoverA, Double_t ein, Double_t th , Double_t x[100], Double_t y[100])//initial energy and thickness are given as arguments 
