@@ -2,6 +2,42 @@
 #include "catima/catima.h"
 
 Double_t emptyArray[100] = {};
+Bool_t usingLiseFile = false;
+
+namespace elMats {
+	catima::Material foil;
+	catima::Material al;
+	catima::Material boron;
+	catima::Material c4h10;
+	catima::Material csi;
+	catima::Material target;
+	catima::Material mylar;
+	catima::Material phosphorus;
+	catima::Material si;
+	catima::Material si3n4;
+	catima::Material sio2;
+}
+
+void SetUsingLiseFiel(Bool_t value = true)
+{
+	usingLiseFile = value;
+}
+
+void MakeMaterials(int targetA, int targetZ)
+{
+	elMats::foil.add_element(107, 47, 1);
+	elMats::al.add_element(27, 13, 1);
+	elMats::boron.add_element(11, 5, 1);
+	elMats::c4h10 = catima::get_material(212);
+	elMats::csi = catima::get_material(261);
+	elMats::target.add_element(targetA, targetZ, 1); 
+	elMats::mylar = catima::get_material(214);
+	elMats::phosphorus.add_element(31, 15, 1);
+	elMats::si.add_element(28, 14, 1);
+	elMats::si3n4.add_element(28, 14, 3);
+	elMats::si3n4.add_element(14, 7, 4);
+	elMats::sio2 = catima::get_material(330);
+}
 
 StringCode hashString(const TString& str)
 {
@@ -9,7 +45,7 @@ StringCode hashString(const TString& str)
 	if (str == "Al") return StringCode::Al;
 	if (str == "B") return StringCode::B;
 	if (str == "C4H10") return StringCode::C4H10;
-	if (str == "CsI") return StringCode::Foil;
+	if (str == "CsI") return StringCode::CsI;
 	if (str == "Target") return StringCode::Target;
 	if (str == "Mylar") return StringCode::Mylar;
 	if (str == "P") return StringCode::P;

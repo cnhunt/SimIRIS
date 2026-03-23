@@ -95,6 +95,10 @@ void nucleus::ReadFile(std::string binpath, int inputA, std::string inpEl)
 	}
 	fclose(massfile);
 
+	projectile.A = A;
+	projectile.Z = Z;
+	projectile.Q = Z;
+
 	FILE *rctfile1;
 	rctfile1=fopen(rctfilename1.data(),"r");
 	//if(rctfile1==NULL) rctfile1=fopen("../ame/rct1.mas12","r");
@@ -166,6 +170,8 @@ void nucleus::ReadFile(std::string binpath, int inputA, std::string inpEl)
 		}
 	}
 	fclose(rctfile2);
+
+
 
 	return;
 }

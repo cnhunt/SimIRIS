@@ -20,6 +20,7 @@
 #include "header.h"
 #include "detHits.h"
 #include "IPhys.h"
+#include "eloss.h"
 
 reacParams reacPrm;
 geoParams geoPrm;
@@ -369,18 +370,25 @@ int main(int argc, char *argv[])
 	Iris->Branch("phys",&ipphys,32000,99);
 
 	std::string dedxstr = dedxpath;
-	A.EL.loadIncomingELoss(dedxstr,A.name.data(),geoPrm.MFoil,geoPrm.MTgt,A.mass);
-	b.EL.loadOutgoingELoss(dedxstr,b.name.data(),geoPrm.MFoil,geoPrm.MTgt,b.mass);
-	if(!seqdec) B.EL.loadOutgoingELoss(dedxstr,B.name.data(),geoPrm.MFoil,geoPrm.MTgt,B.mass);
-	else{
-	   	decB.EL.loadOutgoingELoss(dedxstr,decB.name.data(),geoPrm.MFoil,geoPrm.MTgt,decB.mass);
-	   	if(decc.Z>0) decc.EL.loadOutgoingELoss(dedxstr,decc.name.data(),geoPrm.MFoil,geoPrm.MTgt,decc.mass);
-	   	if(seqdecN>2&&decd.Z>0) decd.EL.loadOutgoingELoss(dedxstr,decd.name.data(),geoPrm.MFoil,geoPrm.MTgt,decd.mass);
+	if(dedxstr != "") {
+		SetUsingLiseFile(true);
+		A.EL.loadIncomingELoss(dedxstr,A.name.data(),geoPrm.MFoil,geoPrm.MTgt,A.mass);
+		b.EL.loadOutgoingELoss(dedxstr,b.name.data(),geoPrm.MFoil,geoPrm.MTgt,b.mass);
+		if(!seqdec) B.EL.loadOutgoingELoss(dedxstr,B.name.data(),geoPrm.MFoil,geoPrm.MTgt,B.mass);
+		else{
+	   		decB.EL.loadOutgoingELoss(dedxstr,decB.name.data(),geoPrm.MFoil,geoPrm.MTgt,decB.mass);
+	   		if(decc.Z>0) decc.EL.loadOutgoingELoss(dedxstr,decc.name.data(),geoPrm.MFoil,geoPrm.MTgt,decc.mass);
+	   		if(seqdecN>2&&decd.Z>0) decd.EL.loadOutgoingELoss(dedxstr,decd.name.data(),geoPrm.MFoil,geoPrm.MTgt,decd.mass);
+		}
+		if(reacPrm.N>2&&c.Z>0) c.EL.loadOutgoingELoss(dedxstr,c.name.data(),geoPrm.MFoil,geoPrm.MTgt,c.mass);
+		if(reacPrm.N>3&&d.Z>0) c.EL.loadOutgoingELoss(dedxstr,d.name.data(),geoPrm.MFoil,geoPrm.MTgt,d.mass);
+		if(reacPrm.N>4&&e.Z>0) c.EL.loadOutgoingELoss(dedxstr,e.name.data(),geoPrm.MFoil,geoPrm.MTgt,e.mass);
+		if(reacPrm.N>5&&f.Z>0) c.EL.loadOutgoingELoss(dedxstr,f.name.data(),geoPrm.MFoil,geoPrm.MTgt,f.mass);
 	}
-	if(reacPrm.N>2&&c.Z>0) c.EL.loadOutgoingELoss(dedxstr,c.name.data(),geoPrm.MFoil,geoPrm.MTgt,c.mass);
-	if(reacPrm.N>3&&d.Z>0) c.EL.loadOutgoingELoss(dedxstr,d.name.data(),geoPrm.MFoil,geoPrm.MTgt,d.mass);
-	if(reacPrm.N>4&&e.Z>0) c.EL.loadOutgoingELoss(dedxstr,e.name.data(),geoPrm.MFoil,geoPrm.MTgt,e.mass);
-	if(reacPrm.N>5&&f.Z>0) c.EL.loadOutgoingELoss(dedxstr,f.name.data(),geoPrm.MFoil,geoPrm.MTgt,f.mass);
+	else {
+		SetUsingLiseFile(false);
+		MakeMaterials(a.A, a.Z);
+	}
 
 	Double_t BeamSpot=geoPrm.Bs/2.355; // FWHM->sigma 
 	Double_t ICLength=22.9*0.00318*geoPrm.ICPressure; //cm*mg/cm^3 

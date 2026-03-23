@@ -22,6 +22,8 @@ enum class StringCode
         unknown	
 };
 
+void MakeMaterials(double targetA, double targetZ);
+void SetUsingLiseFile(Bool_t value);
 
 StringCode hashString(const TString& str);
 
@@ -32,7 +34,7 @@ Double_t eval(Double_t, Double_t[100], Double_t[100]);
 Double_t eloss(nucleus, Double_t, Double_t, Double_t, Double_t[100], Double_t[100]);
 Double_t eloss(nucleus, Double_t, Double_t, Double_t, TString);
 Double_t eloss_Lise(nucleus, Double_t, Double_t, Double_t, Double_t[100], Double_t[100]);
-//Double_t eloss_CATIMA(nucleus, Double_t, Double_t, Double_t, Double_t[100], Double_t[100]);
+//Double_t eloss_CATIMA(nucleus, Double_t, Double_t, Double_t, TString);
 Double_t elossFi(Double_t, Double_t, Double_t[100], Double_t[100]);
 #endif
 // end

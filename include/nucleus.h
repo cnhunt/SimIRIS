@@ -2,6 +2,7 @@
 #ifndef nucleus_H
 #define nucleus_H
 #include <string>
+#include "catima/catima.h"
 #include "dedx.h"
 
 class nucleus {
@@ -19,6 +20,8 @@ class nucleus {
 		double S2p; 
 		double S2n; 
 		dedx EL; 
+
+		catima::Projectile projectile;
 
 		//virtual void ReadCalibPar(char* line);
 		void getInfo(std::string,std::string);
